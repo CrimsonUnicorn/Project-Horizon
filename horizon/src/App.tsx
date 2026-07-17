@@ -1,17 +1,14 @@
-import Sidebar from "./components/Sidebar/Sidebar";
+import AppLayout from "./layouts/AppLayout";
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
-      <Sidebar />
+    <AppLayout>
+      <h2 className="text-3xl font-semibold">Main Content</h2>
 
-      <main className="flex-1 p-8">
-        <h2 className="text-3xl font-semibold">Main Content</h2>
-        <p className="mt-4 text-gray-600">
-          This is the content area.
-        </p>
-      </main>
-    </div>
+      <p className="mt-4 text-gray-600">
+        This is the content area.
+      </p>
+    </AppLayout>
   );
 }
 
