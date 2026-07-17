@@ -1,0 +1,27 @@
+:root {
+  /* Colors */
+  --color-text: #6b6375;
+  --color-heading: #08060d;
+  --color-background: #ffffff;
+  --color-border: #e5e4e7;
+  --color-accent: #aa3bff;
+
+  /* Typography */
+  --font-family-base: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-family-heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: ui-monospace, Consolas, monospace;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --line-height-body: 1.5;
+  --line-height-heading: 1.2;
+}
