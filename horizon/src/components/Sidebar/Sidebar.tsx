@@ -1,8 +1,10 @@
+import {NavLink} from "react-router-dom";
+
 const navigation = [
-  { id: 1, label: "Dashboard", active: true },
-  { id: 2, label: "Reports", active: false },
-  { id: 3, label: "Settings", active: false },
-  { id: 4, label: "Profile", active: false },
+  { id: 1, label: "Dashboard", active: true, path: "/" },
+  { id: 2, label: "Reports", active: false, path: "/reports" },
+  { id: 3, label: "Settings", active: false, path: "/settings" },
+  { id: 4, label: "Profile", active: false, path: "/profile" },
 ];
 
 function Sidebar() {
@@ -14,15 +16,18 @@ function Sidebar() {
         <ul className="space-y-2">
           {navigation.map((item) => (
             <li key={item.id}>
-              <button
-                className={`w-full rounded-md px-4 py-2 text-left transition-colors ${
-                  item.active
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `w-full rounded-md px-4 py-2 text-left transition-colors ${
+                    isActive
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`
+                }
               >
                 {item.label}
-              </button>
+              </NavLink>
             </li>
           ))}
         </ul>
