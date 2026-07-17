@@ -7,7 +7,7 @@ const navigation = [
 
 function Sidebar() {
   return (
-    <aside className="w-full border-b bg-white p-6 md:min-h-screen md:w-64 md:border-b-0 md:border-r">
+    <aside className="w-full border-b bg-white p-4 sm:p-5 md:min-h-screen md:w-[260px] md:border-b-0 md:border-r">
       <h1 className="mb-8 text-2xl font-bold">Project Horizon</h1>
 
       <nav>
