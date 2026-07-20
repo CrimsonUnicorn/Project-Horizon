@@ -12,13 +12,25 @@ function Settings() {
         name: "",
         email: "",
     });
+    const isFormValid =
+        formData.name.trim() !== "" &&
+        formData.email.trim() !== "" &&
+        error.name === "" &&
+        error.email === "";
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!isFormValid)  return; 
+        console.log("Form submitted:", formData);
+    }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-        const { name, value, type} = e.target;
+
+        const { name, value, type } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === "checkbox" 
-            ? (e.target as HTMLInputElement).checked 
-            : value,
+            [name]: type === "checkbox"
+                ? (e.target as HTMLInputElement).checked
+                : value,
         }));
         if (name === "name" && value.trim() === "") {
             setError((prevError) => ({
@@ -43,7 +55,9 @@ function Settings() {
         <div className="mx-auto max-w-4xl p-6">
             <h1 className="mb-8 text-3xl font-bold">Settings</h1>
 
-            <div className="space-y-8">
+            <form 
+            className="space-y-8"
+            onSubmit = {handleSubmit}>
                 {/* Profile */}
                 <section className="rounded-lg border bg-white p-6 shadow-sm">
                     <h2 className="mb-6 text-xl font-semibold">Profile</h2>
@@ -133,18 +147,22 @@ function Settings() {
                             name="notifications"
                             type="checkbox"
                             checked={formData.notifications}
-                            onChange={handleChange} />
+                            onChange={handleChange}
+                            className="h-4 w-4 transition-all duration-300 ease-in-out" />
 
                         <span>Email Notifications</span>
                     </label>
                 </section>
 
                 <div className="flex justify-end">
-                    <button className="rounded-md bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+                    <button
+                    type="submit"
+                     disabled={!isFormValid}
+                     className="rounded-md bg-blue-600 px-6 py-3 text-white transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400">
                         Save Settings
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 }
