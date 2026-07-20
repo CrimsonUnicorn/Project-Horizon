@@ -19,45 +19,95 @@ function Settings() {
         error.email === "";
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!isFormValid)  return; 
-        console.log("Form submitted:", formData);
+        if (!isFormValid) return;
+        const sanitizedData = {
+            ...formData,
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+        };
+        console.log("Form submitted:", sanitizedData);
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
         const { name, value, type } = e.target;
+
+        const fieldValue =
+            type === "checkbox"
+                ? (e.target as HTMLInputElement).checked
+                : value;
+
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === "checkbox"
-                ? (e.target as HTMLInputElement).checked
-                : value,
+            [name]: fieldValue,
         }));
-        if (name === "name" && value.trim() === "") {
-            setError((prevError) => ({
-                ...prevError,
-                name: "Name is required",
-            }));
-        } else if (name === "email" && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-            setError((prevError) => ({
-                ...prevError,
-                email: "Invalid email address",
-            }));
-        } else {
-            setError((prevError) => ({
-                ...prevError,
-                [name]: "",
-            }));
+
+        // Validate Name
+        if (name === "name") {
+            const trimmedValue = value.trim();
+
+            if (trimmedValue === "") {
+                setError((prev) => ({
+                    ...prev,
+                    name: "Name is required",
+                }));
+            } else if (/<script.*?>.*?<\/script>/i.test(trimmedValue)) {
+                setError((prev) => ({
+                    ...prev,
+                    name: "Script tags are not allowed",
+                }));
+            } else if (!/^[A-Za-z\s]+$/.test(trimmedValue)) {
+                setError((prev) => ({
+                    ...prev,
+                    name: "Only letters and spaces are allowed",
+                }));
+            } else {
+                setError((prev) => ({
+                    ...prev,
+                    name: "",
+                }));
+            }
         }
-    }
+
+        // Validate Email
+        if (name === "email") {
+            const trimmedValue = value.trim();
+
+            if (trimmedValue === "") {
+                setError((prev) => ({
+                    ...prev,
+                    email: "Email is required",
+                }));
+            } else if (/<script.*?>.*?<\/script>/i.test(trimmedValue)) {
+                setError((prev) => ({
+                    ...prev,
+                    email: "Script tags are not allowed",
+                }));
+            } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(trimmedValue)
+            ) {
+                setError((prev) => ({
+                    ...prev,
+                    email: "Invalid email address",
+                }));
+            } else {
+                setError((prev) => ({
+                    ...prev,
+                    email: "",
+                }));
+            }
+        }
+    };
 
 
     return (
         <div className="mx-auto max-w-4xl p-6">
             <h1 className="mb-8 text-3xl font-bold">Settings</h1>
 
-            <form 
-            className="space-y-8"
-            onSubmit = {handleSubmit}>
+            <form
+                className="space-y-8"
+                onSubmit={handleSubmit}>
                 {/* Profile */}
                 <section className="rounded-lg border bg-white p-6 shadow-sm">
                     <h2 className="mb-6 text-xl font-semibold">Profile</h2>
@@ -156,9 +206,9 @@ function Settings() {
 
                 <div className="flex justify-end">
                     <button
-                    type="submit"
-                     disabled={!isFormValid}
-                     className="rounded-md bg-blue-600 px-6 py-3 text-white transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400">
+                        type="submit"
+                        disabled={!isFormValid}
+                        className="rounded-md bg-blue-600 px-6 py-3 text-white transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400">
                         Save Settings
                     </button>
                 </div>
