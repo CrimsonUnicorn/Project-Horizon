@@ -1,7 +1,8 @@
 import { useState } from "react";
-import InputField from "../components/InputField/InputFiend";
 import Button from "../components/Button/Button";
-import WhitespaceCard from "../components/WhitespaceCard/WhitespaceCard";
+import PreferenceSection from "../features/Settings/PreferenceSection";
+import ProfileSection from "../features/Settings/ProfileSection";
+import NotificationSection from "../features/Settings/NotificationSection";
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -112,85 +113,26 @@ function Settings() {
                 className="space-y-8"
                 onSubmit={handleSubmit}>
                 {/* Profile */}
-                <WhitespaceCard title ="Profile" >
-
-                    <div className="grid gap-6 md:grid-cols-2">
-                        <InputField
-                            id="username"
-                            label="Name"
-                            name="name"
-                            type="text"
-                            placeholder="Enter your name"
-                            value={formData.name}
-                            error={error.name}
-                            onChange={handleChange}
-                        />
-
-
-                        <InputField
-                            id="email"
-                            label="Email"
-                            name="email"
-                            type="email"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            error={error.email}
-                            onChange={handleChange}
-                        />
-                    </div>
-                </WhitespaceCard>
+                <ProfileSection
+                    formData={formData}
+                    error={error}
+                    onChange={handleChange}
+                />
 
                 {/* Preferences */}
-                <WhitespaceCard title="Preferences">
+                <PreferenceSection
+                    formData={formData}
+                    onChange={handleChange}
+                />
 
-                    <div className="grid gap-6 md:grid-cols-2">
-                        <div>
-                            <label htmlFor="theme" className="mb-2 block text-sm font-medium">
-                                Theme
-                            </label>
-
-                            <select id="theme"
-                                name="theme"
-                                value={formData.theme}
-                                onChange={handleChange}
-                                className="w-full rounded-md border p-3">
-                                <option value="light">Light</option>
-                                <option value="dark">Dark</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label htmlFor="language" className="mb-2 block text-sm font-medium">
-                                Language
-                            </label>
-
-                            <select id="language"
-                                name="language"
-                                value={formData.language}
-                                onChange={handleChange}
-                                className="w-full rounded-md border p-3">
-                                <option value="english">English</option>
-                                <option value="hindi">Hindi</option>
-                            </select>
-                        </div>
-                    </div>
-                </WhitespaceCard>
 
                 {/* Notifications */}
-                <WhitespaceCard title="Notifications">
+                <NotificationSection
+                    notifications={formData.notifications}
+                    onChange={handleChange}
+                />
 
-                    <label htmlFor="email-notifications" className="flex items-center gap-3">
-                        <input id="email-notifications"
-                            name="notifications"
-                            type="checkbox"
-                            checked={formData.notifications}
-                            onChange={handleChange}
-                            className="h-4 w-4 transition-all duration-300 ease-in-out" />
-
-                        <span>Email Notifications</span>
-                    </label>
-                </WhitespaceCard>
-
+                {/* Submit Button */}
                 <div className="flex justify-end">
                     <Button
                         type="submit"
