@@ -1,4 +1,6 @@
 import { useState } from "react";
+import InputField from "../components/InputField/InputFiend";
+import Button from "../components/Button/Button";
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -113,39 +115,28 @@ function Settings() {
                     <h2 className="mb-6 text-xl font-semibold">Profile</h2>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        <div>
-                            <label htmlFor="username" className="mb-2 block text-sm font-medium">
-                                Name
-                            </label>
+                        <InputField
+                            id="username"
+                            label="Name"
+                            name="name"
+                            type="text"
+                            placeholder="Enter your name"
+                            value={formData.name}
+                            error={error.name}
+                            onChange={handleChange}
+                        />
 
-                            <input
-                                id="username"
-                                name="name"
-                                type="text"
-                                placeholder="Enter your name"
-                                className="w-full rounded-md border p-3"
-                                value={formData.name}
-                                onChange={handleChange}
-                            />
-                            {error.name && <p className="mt-2 text-sm text-red-600">{error.name}</p>}
-                        </div>
 
-                        <div>
-                            <label htmlFor="email" className="mb-2 block text-sm font-medium">
-                                Email
-                            </label>
-
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="Enter your email"
-                                className="w-full rounded-md border p-3"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                            {error.email && <p className="mt-2 text-sm text-red-600">{error.email}</p>}
-                        </div>
+                        <InputField
+                            id="email"
+                            label="Email"
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
+                            error={error.email}
+                            onChange={handleChange}
+                        />
                     </div>
                 </section>
 
@@ -205,12 +196,12 @@ function Settings() {
                 </section>
 
                 <div className="flex justify-end">
-                    <button
+                    <Button
                         type="submit"
                         disabled={!isFormValid}
-                        className="rounded-md bg-blue-600 px-6 py-3 text-white transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400">
+                    >
                         Save Settings
-                    </button>
+                    </Button>
                 </div>
             </form>
         </div>
