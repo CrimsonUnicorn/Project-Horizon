@@ -4,7 +4,7 @@ interface InputFieldProps {
   id: string;
   label: string;
   name: string;
-  type: string;
+  type: "text" | "email" | "password" | "number" | "checkbox";
   placeholder: string;
   value: string;
   error?: string;
