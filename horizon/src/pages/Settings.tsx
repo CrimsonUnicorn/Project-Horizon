@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputField from "../components/InputField/InputFiend";
 import Button from "../components/Button/Button";
+import WhitespaceCard from "../components/WhitespaceCard/WhitespaceCard";
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -111,8 +112,7 @@ function Settings() {
                 className="space-y-8"
                 onSubmit={handleSubmit}>
                 {/* Profile */}
-                <section className="rounded-lg border bg-white p-6 shadow-sm">
-                    <h2 className="mb-6 text-xl font-semibold">Profile</h2>
+                <WhitespaceCard title ="Profile" >
 
                     <div className="grid gap-6 md:grid-cols-2">
                         <InputField
@@ -138,11 +138,10 @@ function Settings() {
                             onChange={handleChange}
                         />
                     </div>
-                </section>
+                </WhitespaceCard>
 
                 {/* Preferences */}
-                <section className="rounded-lg border bg-white p-6 shadow-sm">
-                    <h2 className="mb-6 text-xl font-semibold">Preferences</h2>
+                <WhitespaceCard title="Preferences">
 
                     <div className="grid gap-6 md:grid-cols-2">
                         <div>
@@ -175,13 +174,10 @@ function Settings() {
                             </select>
                         </div>
                     </div>
-                </section>
+                </WhitespaceCard>
 
                 {/* Notifications */}
-                <section className="rounded-lg border bg-white p-6 shadow-sm">
-                    <h2 className="mb-6 text-xl font-semibold">
-                        Notifications
-                    </h2>
+                <WhitespaceCard title="Notifications">
 
                     <label htmlFor="email-notifications" className="flex items-center gap-3">
                         <input id="email-notifications"
@@ -193,7 +189,7 @@ function Settings() {
 
                         <span>Email Notifications</span>
                     </label>
-                </section>
+                </WhitespaceCard>
 
                 <div className="flex justify-end">
                     <Button
