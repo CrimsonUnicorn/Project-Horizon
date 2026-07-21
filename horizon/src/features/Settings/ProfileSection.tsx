@@ -1,22 +1,22 @@
+import { memo } from "react";
 import InputField from "../../components/InputField/InputFiend";
 import WorkspaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 
 
 interface ProfileSectionProps {
-    formData: {
-        name: string;
-        email: string;
-    };
-    error: {
-        name: string;
-        email: string;
-    };
+    name: string;
+    email: string;
+    
+        errname: string;
+        erremail: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 function ProfileSection({
-    formData,
-    error,
+    name,
+    email,
+    errname,
+    erremail,
     onChange,
 }: ProfileSectionProps) {
     return (
@@ -28,8 +28,8 @@ function ProfileSection({
                     name="name"
                     type="text"
                     placeholder="Enter your name"
-                    value={formData.name}
-                    error={error.name}
+                    value={name}
+                    error={errname}
                     onChange={onChange}
                 />
 
@@ -39,8 +39,8 @@ function ProfileSection({
                     name="email"
                     type="email"
                     placeholder="Enter your email"
-                    value={formData.email}
-                    error={error.email}
+                    value={email}
+                    error={erremail}
                     onChange={onChange}
                 />
             </div>
@@ -48,4 +48,4 @@ function ProfileSection({
     );
 }
 
-export default ProfileSection;
+export default memo(ProfileSection);

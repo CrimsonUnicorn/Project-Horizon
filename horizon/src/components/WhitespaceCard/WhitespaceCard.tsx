@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 
 interface WorkspaceCardProps {
     title: string;
@@ -22,4 +22,4 @@ function WorkspaceCard({
     );
 }
 
-export default WorkspaceCard;
+export default memo(WorkspaceCard);

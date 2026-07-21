@@ -1,15 +1,17 @@
+import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 
 interface PreferenceSectionProps {
-    formData: {
+    
         theme: string;
         language: string;
-    };
+    
     onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
 }
 
 function PreferenceSection({
-    formData,
+    theme,
+    language,
     onChange,
 }: PreferenceSectionProps) {
     return (
@@ -23,7 +25,7 @@ function PreferenceSection({
 
                     <select id="theme"
                         name="theme"
-                        value={formData.theme}
+                        value={theme}
                         onChange={onChange}
                         className="w-full rounded-md border p-3">
                         <option value="light">Light</option>
@@ -38,7 +40,7 @@ function PreferenceSection({
 
                     <select id="language"
                         name="language"
-                        value={formData.language}
+                        value={language}
                         onChange={onChange}
                         className="w-full rounded-md border p-3">
                         <option value="english">English</option>
@@ -50,4 +52,4 @@ function PreferenceSection({
     );
 }
 
-export default PreferenceSection;
+export default memo(PreferenceSection);

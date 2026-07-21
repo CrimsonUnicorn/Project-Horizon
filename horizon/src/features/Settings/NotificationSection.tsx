@@ -1,3 +1,4 @@
+import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 
 interface NotificationSectionProps {
@@ -30,4 +31,4 @@ function NotificationSection({
     );
 }
 
-export default NotificationSection;
+export default memo(NotificationSection);

@@ -114,14 +114,17 @@ function Settings() {
                 onSubmit={handleSubmit}>
                 {/* Profile */}
                 <ProfileSection
-                    formData={formData}
-                    error={error}
+                    name={formData.name}
+                    email={formData.email}
+                    errname={error.name}
+                    erremail={error.email}
                     onChange={handleChange}
                 />
 
                 {/* Preferences */}
                 <PreferenceSection
-                    formData={formData}
+                    theme={formData.theme}
+                    language={formData.language}
                     onChange={handleChange}
                 />
 

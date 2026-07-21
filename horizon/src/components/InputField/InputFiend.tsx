@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { memo, type ChangeEvent } from "react";
 
 interface InputFieldProps {
   id: string;
@@ -49,4 +49,4 @@ function InputField({
   );
 }
 
-export default InputField;
+export default memo(InputField);
