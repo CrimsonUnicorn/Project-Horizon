@@ -1,9 +1,23 @@
 import { useSearchParams } from "react-router-dom";
+  const VALID_TABS = [
+    "overview",
+    "analytics",
+    "activity",
+] as const;
+
 
 function Dashboard() {
+
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
-  const activeTab = searchParams.get("tab") || "overview";
+  const tabParam = searchParams.get("tab");
+  
+  const activeTab =
+    VALID_TABS.includes(
+        tabParam as typeof VALID_TABS[number]
+    )
+        ? tabParam
+        : "overview";
 
   const handleTabChange = (tab: string) => {
     const params = new URLSearchParams(searchParams);
