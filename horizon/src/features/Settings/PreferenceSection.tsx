@@ -2,10 +2,9 @@ import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 
 interface PreferenceSectionProps {
-    
-        theme: string;
-        language: string;
-    
+
+    theme: string;
+    language: string;
     onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
 }
 
