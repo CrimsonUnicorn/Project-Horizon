@@ -25,7 +25,9 @@ function Dashboard() {
         params.delete("search");
     }
 
-    setSearchParams(params);
+    setSearchParams(params,{
+      replace: true
+    });
 };
 
   return (
