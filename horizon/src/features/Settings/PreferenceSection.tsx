@@ -1,17 +1,10 @@
 import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { setLanguage, setTheme } from "./settingSlice";
 
-interface PreferenceSectionProps {
 
-    theme: string;
-    language: string;
-    onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
-}
-
-function PreferenceSection({
-    onChange,
-}: PreferenceSectionProps) {
+function PreferenceSection() {
 
     const dispatch = useAppDispatch();
     const {theme, language} = useAppSelector((state) => state.settings);
@@ -27,7 +20,7 @@ function PreferenceSection({
                     <select id="theme"
                         name="theme"
                         value={theme}
-                        onChange={onChange}
+                        onChange={(e) => dispatch(setTheme(e.target.value))}
                         className="w-full rounded-md border p-3">
                         <option value="light">Light</option>
                         <option value="dark">Dark</option>
@@ -42,7 +35,7 @@ function PreferenceSection({
                     <select id="language"
                         name="language"
                         value={language}
-                        onChange={onChange}
+                        onChange={(e) => dispatch(setLanguage(e.target.value))}
                         className="w-full rounded-md border p-3">
                         <option value="english">English</option>
                         <option value="hindi">Hindi</option>

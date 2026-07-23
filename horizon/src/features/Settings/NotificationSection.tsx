@@ -1,15 +1,9 @@
 import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { setNotifications } from "./settingSlice";
 
-interface NotificationSectionProps {
-    notifications: boolean;
-    onChange: React.ChangeEventHandler<HTMLInputElement>;
-}
-
-function NotificationSection({
-    onChange,
-}: NotificationSectionProps) {
+function NotificationSection() {
     const dispatch = useAppDispatch();
     const {notifications} = useAppSelector((state) => state.settings);
     return (
@@ -23,7 +17,7 @@ function NotificationSection({
                     name="notifications"
                     type="checkbox"
                     checked={notifications}
-                    onChange={onChange}
+                    onChange={(e) => dispatch(setNotifications(e.target.checked))}
                     className="h-4 w-4 transition-all duration-300 ease-in-out"
                 />
 
