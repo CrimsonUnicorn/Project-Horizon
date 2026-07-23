@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: "light",
@@ -9,7 +9,19 @@ const initialState = {
 const settingsSlice = createSlice({
   name: "settings",
   initialState,
-  reducers: {},
+  reducers: {
+    setTheme(state, action : PayloadAction<string>) {
+      state.theme = action.payload;
+    },
+    setLanguage(state, action : PayloadAction<string>) {
+      state.language = action.payload;
+    },
+    setNotifications(state, action : PayloadAction<boolean>) {
+      state.notifications = action.payload;
+    },
+  },
 });
+
+export const { setTheme, setLanguage, setNotifications } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
