@@ -1,5 +1,6 @@
 import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 
 interface NotificationSectionProps {
     notifications: boolean;
@@ -7,9 +8,10 @@ interface NotificationSectionProps {
 }
 
 function NotificationSection({
-    notifications,
     onChange,
 }: NotificationSectionProps) {
+    const dispatch = useAppDispatch();
+    const {notifications} = useAppSelector((state) => state.settings);
     return (
         <WhitespaceCard title="Notifications">
             <label

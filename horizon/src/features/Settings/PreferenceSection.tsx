@@ -1,5 +1,6 @@
 import { memo } from "react";
 import WhitespaceCard from "../../components/WhitespaceCard/WhitespaceCard";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 
 interface PreferenceSectionProps {
 
@@ -9,10 +10,11 @@ interface PreferenceSectionProps {
 }
 
 function PreferenceSection({
-    theme,
-    language,
     onChange,
 }: PreferenceSectionProps) {
+
+    const dispatch = useAppDispatch();
+    const {theme, language} = useAppSelector((state) => state.settings);
     return (
         <WhitespaceCard title="Preferences">
 
