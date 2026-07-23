@@ -11,7 +11,7 @@ function Button({
     return (
         <button
             {...props}
-            className="rounded-md bg-blue-600 px-6 py-3 text-white transition-all duration-300 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+            className="rounded-lg bg-violet-600 px-6 py-3 font-medium text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-violet-700 hover:shadow-lg disabled:bg-slate-400"
         >
             {children}
         </button>

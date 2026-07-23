@@ -12,8 +12,8 @@ function WorkspaceCard({
     className = "",
 }: WorkspaceCardProps) {
     return (
-        <section className={`rounded-lg border bg-white p-6 shadow-sm ${className}`}>
-            <h2 className="mb-6 text-xl font-semibold">
+        <section className={`rounded-xl border border-slate-200 bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-lg ${className}`}>
+            <h2 className="mb-6 text-xl font-semibold text-slate-800">
                 {title}
             </h2>
 

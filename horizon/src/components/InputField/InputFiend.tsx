@@ -25,7 +25,7 @@ function InputField({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-sm font-medium"
+        className="mb-2 block text-sm font-semibold text-slate-700"
       >
         {label}
       </label>
@@ -37,7 +37,7 @@ function InputField({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="w-full rounded-md border p-3"
+        className="w-full rounded-lg border border-slate-300 bg-white p-3 outline-none transition focus:border-violet-500 focus:ring-2 focus:ring-violet-200"
       />
 
       {error && (

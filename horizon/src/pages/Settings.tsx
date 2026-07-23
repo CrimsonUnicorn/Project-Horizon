@@ -106,8 +106,8 @@ function Settings() {
 
 
     return (
-        <div className="mx-auto max-w-4xl p-6">
-            <h1 className="mb-8 text-3xl font-bold">Settings</h1>
+        <div className="mx-auto max-w-5xl p-6 sm:p-8">
+            <h1 className="mb-8 text-4xl font-bold tracking-tight text-slate-800">Settings</h1>
 
             <form
                 className="space-y-8"
@@ -122,18 +122,11 @@ function Settings() {
                 />
 
                 {/* Preferences */}
-                <PreferenceSection
-                    theme={formData.theme}
-                    language={formData.language}
-                    onChange={handleChange}
-                />
+                <PreferenceSection/>
 
 
                 {/* Notifications */}
-                <NotificationSection
-                    notifications={formData.notifications}
-                    onChange={handleChange}
-                />
+                <NotificationSection/>
 
                 {/* Submit Button */}
                 <div className="flex justify-end">

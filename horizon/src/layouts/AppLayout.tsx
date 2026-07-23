@@ -7,7 +7,7 @@ interface AppLayoutProps {
 
 function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="mx-auto grid min-h-screen w-full max-w-[1440px] grid-cols-1 md:grid-cols-[260px_1fr]">
+    <div className="w-full grid min-h-screen w-full  grid-cols-1 md:grid-cols-[260px_1fr]">
       <Sidebar />
 
       <main className="overflow-auto p-4 sm:p-6 lg:p-8">

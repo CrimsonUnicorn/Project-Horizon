@@ -1,10 +1,10 @@
 :root {
   /* Colors */
-  --color-text: #6b6375;
-  --color-heading: #08060d;
-  --color-background: #ffffff;
-  --color-border: #e5e4e7;
-  --color-accent: #aa3bff;
+  --color-background: #f8fafc;
+  --color-text: #475569;
+  --color-heading: #0f172a;
+  --color-border: #e2e8f0;
+  --color-accent: #7c3aed;
 
   /* Typography */
   --font-family-base: system-ui, "Segoe UI", Roboto, sans-serif;
