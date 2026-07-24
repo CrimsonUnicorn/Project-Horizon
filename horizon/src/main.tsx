@@ -5,6 +5,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.ts'
 
+
+async function bootstrap() {
+  if (import.meta.env.DEV) {
+    const { worker } = await import("./mocks/browser");
+    await worker.start();
+  }
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
@@ -12,3 +18,6 @@ createRoot(document.getElementById('root')!).render(
   </BrowserRouter>,
   </Provider>
 )
+}
+
+bootstrap()
