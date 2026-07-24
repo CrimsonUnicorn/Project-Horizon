@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://api.example.com',
+    baseURL: 'https://jsonplaceholder.typicode.com',
     timeout: 10000,
 })
 

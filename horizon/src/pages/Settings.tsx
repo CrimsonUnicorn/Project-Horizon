@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
 import PreferenceSection from "../features/Settings/PreferenceSection";
 import ProfileSection from "../features/Settings/ProfileSection";
 import NotificationSection from "../features/Settings/NotificationSection";
+import api from "../services/api";
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -104,6 +105,26 @@ function Settings() {
         }
     };
 
+/*
+    // TEMP: FE-12.2 MSW mock API test
+useEffect(() => {
+  console.log("Settings useEffect ran");
+
+  async function fetchProfile() {
+    try {
+      console.log("Fetching profile...");
+
+      const response = await api.get("/profile");
+
+      console.log("Mock profile:", response.data);
+    } catch (error) {
+      console.error("Failed to fetch mock profile:", error);
+    }
+  }
+
+  fetchProfile();
+}, []);
+*/
 
     return (
         <div className="mx-auto max-w-5xl p-6 sm:p-8">
