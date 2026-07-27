@@ -4,6 +4,8 @@ import PreferenceSection from "../features/Settings/PreferenceSection";
 import ProfileSection from "../features/Settings/ProfileSection";
 import NotificationSection from "../features/Settings/NotificationSection";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -22,6 +24,8 @@ function Settings() {
         formData.email.trim() !== "" &&
         error.name === "" &&
         error.email === "";
+
+
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!isFormValid) return;
@@ -32,6 +36,8 @@ function Settings() {
         };
         console.log("Form submitted:", sanitizedData);
     }
+
+    const navigate = useNavigate();
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -105,26 +111,44 @@ function Settings() {
         }
     };
 
-/*
+
+
     // TEMP: FE-12.2 MSW mock API test
-useEffect(() => {
-  console.log("Settings useEffect ran");
+    useEffect(() => {
+        console.log("Settings useEffect ran");
 
-  async function fetchProfile() {
-    try {
-      console.log("Fetching profile...");
+        async function fetchProfile() {
+            try {
+                console.log("Fetching profile...");
 
-      const response = await api.get("/profile");
+                const response = await api.get("/profile");
 
-      console.log("Mock profile:", response.data);
-    } catch (error) {
-      console.error("Failed to fetch mock profile:", error);
-    }
-  }
+                console.log("Mock profile:", response.data);
+            } catch (error) {
+                if (axios.isAxiosError(error))
+                    switch (error.response?.status) {
+                        case 401:
+                            navigate("/unauthorized");
+                            break;
 
-  fetchProfile();
-}, []);
-*/
+                        case 403:
+                            navigate("/forbidden");
+                            break;
+                        case 422:
+                            setError({
+                                name: error.response?.data.errors.name ?? "",
+                                email: error.response?.data.errors.email ?? "",
+                            });
+                            break;
+                        default:
+                            console.error(error);
+                    }
+            }
+        }
+
+        fetchProfile();
+    }, []);
+
 
     return (
         <div className="mx-auto max-w-5xl p-6 sm:p-8">
@@ -143,11 +167,11 @@ useEffect(() => {
                 />
 
                 {/* Preferences */}
-                <PreferenceSection/>
+                <PreferenceSection />
 
 
                 {/* Notifications */}
-                <NotificationSection/>
+                <NotificationSection />
 
                 {/* Submit Button */}
                 <div className="flex justify-end">
