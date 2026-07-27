@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { showToast } from "../features/Settings/toastSlice";
+import Loader from "../components/Loader/Loader";
 
 function Settings() {
 
@@ -127,6 +128,7 @@ function Settings() {
         console.log("Settings useEffect ran");
 
         async function fetchProfile() {
+            setLoading(true);
             try {
                 console.log("Fetching profile...");
 
@@ -172,12 +174,8 @@ function Settings() {
     }, [dispatch, navigate]);
 
     if (loading) {
-        return (
-            <div className="flex h-64 items-center justify-center">
-                <p className="text-lg text-slate-600">Loading profile...</p>
-            </div>
-        );
-    }
+        return <Loader />;
+        }
 
 
     return (
