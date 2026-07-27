@@ -6,8 +6,11 @@ const api = axios.create({
     timeout: 10000,
 })
 
+let reqCount = 0;
 api.interceptors.request.use(
     (config) => {
+        reqCount++;
+        console.log(`Request count: ${reqCount}`);
         return config;
     },
     (error) => {
