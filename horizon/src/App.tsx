@@ -6,10 +6,13 @@ import Settings from "./pages/Settings";
 import Profiles from "./pages/Profiles";
 import Forbidden from "./pages/Forbidden";
 import Unauthorized from "./pages/Unauthorized";
+import ToastListner from "./components/ToastListener";
+
 
 function App() {
   return (
     <AppLayout>
+      <ToastListner/>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/reports" element={<Reports />} />
