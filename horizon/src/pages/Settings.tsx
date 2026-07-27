@@ -28,12 +28,13 @@ function Settings() {
         error.name === "" &&
         error.email === "";
 
+    const [loading, setLoading] = useState(true);
 
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    
+
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!isFormValid) return;
@@ -132,6 +133,13 @@ function Settings() {
                 const response = await api.get("/profile");
 
                 console.log("Mock profile:", response.data);
+                setFormData({
+                    name: response.data.name,
+                    email: response.data.email,
+                    theme: response.data.theme,
+                    language: response.data.language,
+                    notifications: response.data.notifications,
+                })
             } catch (error) {
                 if (axios.isAxiosError(error))
                     switch (error.response?.status) {
@@ -155,11 +163,21 @@ function Settings() {
                             dispatch(showToast({ message: "An unexpected error occurred.", type: "error" }));
                             console.error(error);
                     }
+            } finally {
+                setLoading(false);
             }
         }
 
         fetchProfile();
-    }, []);
+    }, [dispatch, navigate]);
+
+    if (loading) {
+        return (
+            <div className="flex h-64 items-center justify-center">
+                <p className="text-lg text-slate-600">Loading profile...</p>
+            </div>
+        );
+    }
 
 
     return (
