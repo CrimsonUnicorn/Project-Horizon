@@ -4,6 +4,7 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store.ts'
+import { ToastContainer } from 'react-toastify/unstyled'
 
 
 async function bootstrap() {
@@ -16,6 +17,14 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
     <App />
   </BrowserRouter>,
+   <ToastContainer
+    position="top-right"
+    autoClose={3000}
+    hideProgressBar={false}
+    newestOnTop
+    closeOnClick
+    pauseOnHover
+  />
   </Provider>
 )
 }

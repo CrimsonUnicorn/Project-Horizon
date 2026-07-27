@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import settingsReducer from "../features/Settings/settingSlice";
+import toastReducer from "../features/Settings/toastSlice";
 
 export const store = configureStore({
   reducer: {
     settings: settingsReducer,
+    toast: toastReducer,
   },
 });
 

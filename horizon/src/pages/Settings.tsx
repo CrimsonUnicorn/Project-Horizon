@@ -6,6 +6,9 @@ import NotificationSection from "../features/Settings/NotificationSection";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { showToast } from "../features/Settings/toastSlice";
+
 function Settings() {
 
     const [formData, setFormData] = useState({
@@ -26,6 +29,11 @@ function Settings() {
         error.email === "";
 
 
+
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!isFormValid) return;
@@ -35,9 +43,9 @@ function Settings() {
             email: formData.email.trim(),
         };
         console.log("Form submitted:", sanitizedData);
+        dispatch(showToast({ message: "Settings saved successfully!", type: "success" })
+        );
     }
-
-    const navigate = useNavigate();
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -128,19 +136,23 @@ function Settings() {
                 if (axios.isAxiosError(error))
                     switch (error.response?.status) {
                         case 401:
+                            dispatch(showToast({ message: "Unauthorized access.", type: "error" }));
                             navigate("/unauthorized");
                             break;
 
                         case 403:
+                            dispatch(showToast({ message: "Access forbidden.", type: "error" }));
                             navigate("/forbidden");
                             break;
                         case 422:
+                            dispatch(showToast({ message: "Invalid input data.", type: "error" }));
                             setError({
                                 name: error.response?.data.errors.name ?? "",
                                 email: error.response?.data.errors.email ?? "",
                             });
                             break;
                         default:
+                            dispatch(showToast({ message: "An unexpected error occurred.", type: "error" }));
                             console.error(error);
                     }
             }
